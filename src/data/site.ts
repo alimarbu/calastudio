@@ -9,9 +9,9 @@ export const site = {
   locale: "es_ES",
   email: "hola@thecalastudio.com",
   phone: "",
-  // Coordenadas del Balcón de Europa (Nerja): 36°44′41″N, 3°52′34″O
+  // Coordenadas decorativas (Balcón de Europa, Nerja): solo como recurso visual, no se nombra el lugar
   coordinates: { lat: "36°44′N", lng: "3°52′O" },
-  location: "Balcón de Europa, Nerja",
+  location: "Nerja",
   social: {
     instagram: "https://www.instagram.com/calastudio",
     linkedin: "https://www.linkedin.com/company/calastudio",
