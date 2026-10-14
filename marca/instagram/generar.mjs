@@ -128,8 +128,93 @@ Object.entries(glyphs).forEach(([name, g], i) => {
   pieces.push({ name: `destacada-${i + 1}-${name}`, w: W, h: SH, html: base(W, SH, C.cream, `<div style="position:absolute;inset:0;display:grid;place-items:center"><svg width="380" height="380" viewBox="0 0 360 360">${g}</svg></div>`) });
 });
 
+// ---------- Historias para las destacadas (9:16) ----------
+// Zona segura: Instagram tapa ~220 px arriba (barra de progreso y perfil) y ~260 px abajo (respuesta).
+const story = (bg, body, color = C.ink) => base(W, SH, bg, `<div style="position:absolute;inset:230px 90px 270px">${body}</div>`, color);
+const check = (color = C.deep) => `<svg width="30" height="30" viewBox="0 0 30 30" style="flex:none;margin-top:10px"><path d="M5 15.5l6.5 6.5L25 8.5" fill="none" stroke="${color}" stroke-width="3.2"/></svg>`;
+const progress = (n, total, on = C.deep, off = C.line) => `<div style="display:flex;gap:10px;margin-top:34px">${Array.from({ length: total }, (_, i) => `<span style="flex:1;height:6px;background:${i < n ? on : off}"></span>`).join("")}</div>`;
+
+const services = [
+  { name: "Estrategia", short: "Saber qué queremos conseguir antes de publicar o invertir un euro.", includes: ["Análisis de negocio y situación actual", "Posicionamiento y propuesta de valor", "Público y competencia", "Elección de canales y prioridades", "Plan de acción con objetivos medibles"], fit: "Empiezas un proyecto, o ya haces marketing pero no tienes claro qué está funcionando." },
+  { name: "Redes sociales", short: "Redes con una función dentro del negocio, no solo para estar activos.", includes: ["Estrategia y línea editorial", "Calendario de contenido", "Diseño, foto y vídeo para redes", "Copy y publicación", "Informe mensual que se entiende"], fit: "Publicas sin un objetivo claro o no tienes tiempo para hacerlo bien." },
+  { name: "Publicidad digital", short: "Meta Ads y Google Ads para captar, vender o darte a conocer.", includes: ["Planificación de campañas y presupuesto", "Creatividades y anuncios", "Medición y conversiones", "Optimización continua", "Informes claros de inversión y retorno"], fit: "Quieres invertir en publicidad sin tirar el dinero, o ya inviertes y no sabes qué te devuelve." },
+  { name: "Web & Landing Pages", short: "Páginas que explican bien lo que haces y convierten visitas en contactos.", includes: ["Estructura y contenidos", "Diseño visual a medida", "Desarrollo rápido y optimizado", "SEO técnico básico y analítica", "Landing pages para campañas"], fit: "Tu web no transmite lo que eres o recibe visitas que no se convierten en nada." },
+  { name: "Branding & Creatividad", short: "Una identidad reconocible y piezas que la gente recuerda.", includes: ["Identidad visual y logotipo", "Sistema gráfico y guía de uso", "Conceptos de campaña", "Piezas digitales e impresas", "Dirección de arte de contenido"], fit: "Tu marca no se distingue de la competencia o cada pieza parece de una empresa distinta." },
+  { name: "Automatización & IA", short: "Tecnología cuando ahorra trabajo de verdad. No porque esté de moda.", includes: ["Revisión de procesos repetitivos", "Automatización de captación y seguimiento", "Conexión entre CRM, formularios y email", "Uso práctico de IA en el día a día", "Formación al equipo"], fit: "Pierdes horas en tareas repetitivas o tus herramientas no hablan entre sí." },
+];
+
+pieces.push({ name: "historia-servicios-00-portada", w: W, h: SH, html: story(C.paper, `
+  ${header('<span style="color:#0B6B61">Servicios</span>', "Lo que hacemos")}
+  <h1 class="d" style="font-size:150px;margin-top:90px">Lo que<br>hacemos,<br><span class="a" style="color:${C.deep}">sin rodeos.</span></h1>
+  <div style="margin-top:80px;border-top:2px solid ${C.ink}">
+    ${services.map((s, i) => `<div style="display:flex;gap:40px;align-items:baseline;border-bottom:2px solid ${C.line};padding:24px 0"><span class="l" style="color:${C.mute};width:60px">0${i + 1}</span><span style="font-family:'Bricolage Grotesque';font-weight:500;font-size:58px;letter-spacing:-.02em">${s.name}</span></div>`).join("")}
+  </div>
+  <div class="row l" style="position:absolute;left:0;right:0;bottom:0;color:${C.mute}"><span>Algo concreto o todo el marketing</span><span style="color:${C.ink}">Toca → </span></div>`) });
+
+services.forEach((s, i) => {
+  pieces.push({ name: `historia-servicios-0${i + 1}-${s.name.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z]+/g, "-").replace(/-$/, "")}`, w: W, h: SH, html: story(C.cream, `
+    ${header(`<span style="color:#0B6B61">(0${i + 1})</span> Servicios`, `0${i + 1} / 0${services.length}`)}
+    ${progress(i + 1, services.length)}
+    <h1 class="d" style="font-size:${s.name.length > 16 ? 124 : 150}px;margin-top:80px">${s.name.replace(" & ", ` <span class="a" style="color:${C.deep}">&amp;</span><br>`)}</h1>
+    <p class="a" style="font-size:58px;line-height:1.08;margin-top:40px;color:${C.deep}">${s.short}</p>
+    <p class="l" style="margin-top:70px;color:${C.mute}">Qué incluye</p>
+    <div style="margin-top:22px;border-top:2px solid ${C.ink}">
+      ${s.includes.map((t) => `<div style="display:flex;gap:26px;border-bottom:2px solid ${C.line};padding:22px 0;font-size:38px;line-height:1.2">${check()}<span>${t}</span></div>`).join("")}
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:110px;background:${C.ink};color:${C.cream};padding:40px 44px">
+      <p class="l" style="font-size:24px;color:${C.agua}">Es para ti si…</p>
+      <p style="font-size:36px;line-height:1.3;margin-top:14px">${s.fit}</p>
+    </div>
+    ${footer(C.mute, C.line, "thecalastudio.com/servicios")}`) });
+});
+
+// Línea de bodas, con su propia paleta (lino, arena, mar) y la serif editorial
+const W8 = { linen: "#FAF6EF", sand: "#ECE4D6", umber: "#24201B", soft: "#675F55", sea: "#2B6F66", line: "rgba(36,32,27,.16)" };
+pieces.push({ name: "historia-servicios-07-bodas", w: W, h: SH, html: story(W8.linen, `
+  ${header(`<span style="color:${W8.sea}">Y además</span>`, "Cala Weddings", W8.soft, W8.line)}
+  <p style="font-family:'Instrument Serif';font-size:44px;margin-top:90px;color:${W8.soft}">Cala Weddings <span style="font-style:italic">by Cala Studio</span></p>
+  <h1 style="font-family:'Instrument Serif';font-weight:400;font-size:150px;line-height:.95;letter-spacing:-.02em;margin-top:30px">Diseño para<br>vuestra <span style="font-style:italic;color:${W8.sea}">boda.</span></h1>
+  <p style="font-size:42px;line-height:1.35;margin-top:50px;color:${W8.soft}">Una idea propia para vuestra boda, aplicada a todo: del Save the Date a la última mesa.</p>
+  <div style="margin-top:60px;border-top:2px solid ${W8.umber}">
+    ${["Identidad visual y monograma", "Invitaciones y papelería", "Web de boda con RSVP", "Diseño para el gran día"].map((t, i) => `<div style="display:flex;gap:36px;align-items:baseline;border-bottom:2px solid ${W8.line};padding:24px 0"><span style="font-family:'Instrument Serif';font-style:italic;font-size:44px;color:${W8.sea};width:40px">${"ABCD"[i]}</span><span style="font-size:44px">${t}</span></div>`).join("")}
+  </div>
+  <div class="row l" style="position:absolute;left:0;right:0;bottom:0;color:${W8.soft};border-top:2px solid ${W8.line};padding-top:22px"><span>Málaga · Costa del Sol · donde estéis</span><span style="color:${W8.umber}">thecalastudio.com/bodas</span></div>`, W8.umber) });
+
+pieces.push({ name: "historia-metodo", w: W, h: SH, html: story(C.cream, `
+  ${header('<span style="color:#0B6B61">Método</span>', "Cómo trabajamos")}
+  <h1 class="d" style="font-size:112px;margin-top:70px">Cuatro pasos.<br><span class="a" style="color:${C.deep}">Siempre en<br>este orden.</span></h1>
+  <div style="margin-top:56px;position:relative;padding-left:64px">
+    <span style="position:absolute;left:11px;top:30px;bottom:60px;width:2px;background:rgba(23,23,23,.25)"></span>
+    ${[["Entender", "El negocio, el producto, el cliente y qué está pasando realmente."], ["Ordenar", "Prioridades, estrategia, canales y objetivos."], ["Crear", "Campañas, contenido, diseño y acciones concretas."], ["Medir", "Qué funciona, qué no y dónde merece la pena invertir."]].map(([t, d], i) => `<div style="position:relative;margin-bottom:34px"><span style="position:absolute;left:-64px;top:26px;width:24px;height:24px;border-radius:50%;border:2px solid ${C.ink};background:${i === 3 ? C.deep : C.cream}"></span><div class="row"><span class="d" style="font-size:80px">${t}<span style="color:${C.deep}">.</span></span><span class="l" style="color:${C.mute}">0${i + 1}</span></div><div style="font-size:32px;line-height:1.3;color:${C.mute};margin-top:8px">${d}</div></div>`).join("")}
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:110px;display:flex;gap:22px;align-items:center;font-size:40px"><svg width="56" height="56" viewBox="0 0 56 56"><path d="M46 28A18 18 0 1 1 40.7 15.3" fill="none" stroke="${C.deep}" stroke-width="4"/><path d="M42 6v11H31" fill="none" stroke="${C.deep}" stroke-width="4"/></svg><span>Y vuelta a empezar: <span class="a" style="font-size:48px;color:${C.deep}">cada mes, mejor.</span></span></div>
+  ${footer()}`) });
+
+pieces.push({ name: "historia-nosotros", w: W, h: SH, html: story(C.ink, `
+  ${header(`<span style="color:${C.agua}">Nosotros</span>`, "Cala Studio", "#A5A49E", "rgba(248,247,242,.16)")}
+  <h1 class="d" style="font-size:108px;margin-top:70px"><span style="color:rgba(248,247,242,.5)">Escuchar primero.<br>Pensar después.</span><br><span class="a" style="color:${C.agua}">Ejecutar con criterio.</span></h1>
+  <p style="font-size:36px;line-height:1.4;margin-top:50px;color:rgba(248,247,242,.85)">Somos una agencia de marketing en Nerja. Muchas empresas publican, invierten y rediseñan sin tener claro para qué. Nosotros empezamos al revés: entender el negocio, decidir qué merece la pena y hacerlo bien.</p>
+  <p style="font-size:36px;line-height:1.4;margin-top:24px;color:rgba(248,247,242,.85)">Pocos clientes, muy de cerca. Hablas siempre con quien hace el trabajo.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:44px">
+    ${["Claridad", "Transparencia", "Criterio", "Cercanía"].map((t) => `<span style="border:2px solid rgba(248,247,242,.3);border-radius:999px;padding:12px 26px;font-size:30px">${t}</span>`).join("")}
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:110px;display:flex;gap:30px;align-items:center">${mark(84, C.cream)}<p style="font-size:34px;line-height:1.3;color:#A5A49E">Una cala es un sitio pequeño, resguardado y <span class="a" style="font-size:40px;color:${C.cream}">fácil de reconocer.</span> Así queremos que sea trabajar con nosotros.</p></div>
+  ${footer("#A5A49E", "rgba(248,247,242,.16)")}`, C.cream) });
+
+pieces.push({ name: "historia-contacto", w: W, h: SH, html: story(C.agua, `
+  ${header("Contacto", "Hablemos", C.ink, "rgba(23,23,23,.25)")}
+  <h1 class="d" style="font-size:156px;margin-top:80px">¿Tienes algo <span class="a">entre manos?</span></h1>
+  <p style="font-size:40px;line-height:1.35;margin-top:44px;max-width:860px">Cuéntanos qué estás montando, qué quieres mejorar o qué no termina de funcionar.</p>
+  <div style="margin-top:56px;border-top:2px solid ${C.ink}">
+    ${[["Email", "hola@thecalastudio.com"], ["Web", "thecalastudio.com"], ["Formulario", "thecalastudio.com/contacto"], ["Dónde", "Balcón de Europa, Nerja (Málaga)"], ["Respuesta", "En menos de 48 h laborables"]].map(([k, v]) => `<div style="display:flex;gap:30px;align-items:baseline;border-bottom:2px solid rgba(23,23,23,.25);padding:24px 0"><span class="l" style="width:230px;flex:none;font-size:24px">${k}</span><span style="font-size:40px;font-weight:500">${v}</span></div>`).join("")}
+  </div>
+  <p style="font-size:32px;line-height:1.35;margin-top:36px;color:rgba(23,23,23,.8)">Te respondemos, hablamos 30 minutos sin compromiso y, si tiene sentido, te enviamos una propuesta clara.</p>
+  <div class="row l" style="position:absolute;left:0;right:0;bottom:0;border-top:2px solid rgba(23,23,23,.25);padding-top:22px"><span style="display:flex;gap:16px;align-items:center">${mark(34, C.ink, C.cream)} Cala Studio</span><span>36°44′N · 3°52′O</span></div>`) });
+
+// Filtro opcional: `node marca/instagram/generar.mjs historia` genera solo las piezas que contienen "historia"
+const only = process.argv[2];
 const browser = await chromium.launch();
-for (const p of pieces) {
+for (const p of pieces.filter((p) => !only || p.name.includes(only))) {
   const page = await browser.newPage({ viewport: { width: p.w, height: p.h } });
   await page.setContent(p.html, { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);

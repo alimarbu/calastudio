@@ -40,6 +40,20 @@ Sube cada portada como historia, crea la destacada con ese nombre y usa la image
 | Nosotros | `destacada-4-nosotros.png` | Equipo, forma de trabajar |
 | Contacto | `destacada-5-contacto.png` | Cómo escribirnos, enlace a la web |
 
+### Historias para dentro de cada destacada (1080×1920)
+
+Súbelas en este orden y añádelas a su destacada. Todo el texto importante queda dentro de la zona segura (no lo tapan la barra de arriba ni la caja de respuesta).
+
+| Destacada | Historias (en orden) |
+|---|---|
+| Servicios | `historia-servicios-00-portada.png` → `01-estrategia` → `02-redes-sociales` → `03-publicidad-digital` → `04-web-landing-pages` → `05-branding-creatividad` → `06-automatizacion-ia` → `07-bodas` (Cala Weddings) |
+| Método | `historia-metodo.png` |
+| Nosotros | `historia-nosotros.png` |
+| Contacto | `historia-contacto.png` → añade una **pegatina de enlace** a `thecalastudio.com/contacto` y otra de **email** si quieres |
+
+Consejo: en las de servicios, pon una pegatina de enlace a `thecalastudio.com/servicios` (o `/bodas` en la de Cala Weddings) en el hueco bajo la caja negra.
+Para regenerar solo las historias: `node marca/instagram/generar.mjs historia-`.
+
 Historia de estreno: `historia-lanzamiento.png` → añade una **pegatina de enlace** a `thecalastudio.com`.
 
 ---
