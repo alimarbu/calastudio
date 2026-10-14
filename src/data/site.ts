@@ -11,7 +11,7 @@ export const site = {
   phone: "",
   // Coordenadas decorativas (Balcón de Europa, Nerja): solo como recurso visual, no se nombra el lugar
   coordinates: { lat: "36°44′N", lng: "3°52′O" },
-  location: "Nerja",
+  location: "Málaga",
   social: {
     instagram: "https://www.instagram.com/calastudio",
     linkedin: "https://www.linkedin.com/company/calastudio",

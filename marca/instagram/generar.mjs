@@ -193,7 +193,7 @@ pieces.push({ name: "historia-metodo", w: W, h: SH, html: story(C.cream, `
 pieces.push({ name: "historia-nosotros", w: W, h: SH, html: story(C.ink, `
   ${header(`<span style="color:${C.agua}">Nosotros</span>`, "Cala Studio", "#A5A49E", "rgba(248,247,242,.16)")}
   <h1 class="d" style="font-size:108px;margin-top:70px"><span style="color:rgba(248,247,242,.5)">Escuchar primero.<br>Pensar después.</span><br><span class="a" style="color:${C.agua}">Ejecutar con criterio.</span></h1>
-  <p style="font-size:36px;line-height:1.4;margin-top:50px;color:rgba(248,247,242,.85)">Somos una agencia de marketing en Nerja. Muchas empresas publican, invierten y rediseñan sin tener claro para qué. Nosotros empezamos al revés: entender el negocio, decidir qué merece la pena y hacerlo bien.</p>
+  <p style="font-size:36px;line-height:1.4;margin-top:50px;color:rgba(248,247,242,.85)">Somos una agencia de marketing en Málaga. Muchas empresas publican, invierten y rediseñan sin tener claro para qué. Nosotros empezamos al revés: entender el negocio, decidir qué merece la pena y hacerlo bien.</p>
   <p style="font-size:36px;line-height:1.4;margin-top:24px;color:rgba(248,247,242,.85)">Pocos clientes, muy de cerca. Hablas siempre con quien hace el trabajo.</p>
   <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:44px">
     ${["Claridad", "Transparencia", "Criterio", "Cercanía"].map((t) => `<span style="border:2px solid rgba(248,247,242,.3);border-radius:999px;padding:12px 26px;font-size:30px">${t}</span>`).join("")}
@@ -206,7 +206,7 @@ pieces.push({ name: "historia-contacto", w: W, h: SH, html: story(C.agua, `
   <h1 class="d" style="font-size:156px;margin-top:80px">¿Tienes algo <span class="a">entre manos?</span></h1>
   <p style="font-size:40px;line-height:1.35;margin-top:44px;max-width:860px">Cuéntanos qué estás montando, qué quieres mejorar o qué no termina de funcionar.</p>
   <div style="margin-top:56px;border-top:2px solid ${C.ink}">
-    ${[["Email", "hola@thecalastudio.com"], ["Web", "thecalastudio.com"], ["Formulario", "thecalastudio.com/contacto"], ["Dónde", "Nerja, Málaga"], ["Respuesta", "En menos de 48 h laborables"]].map(([k, v]) => `<div style="display:flex;gap:30px;align-items:baseline;border-bottom:2px solid rgba(23,23,23,.25);padding:24px 0"><span class="l" style="width:230px;flex:none;font-size:24px">${k}</span><span style="font-size:40px;font-weight:500">${v}</span></div>`).join("")}
+    ${[["Email", "hola@thecalastudio.com"], ["Web", "thecalastudio.com"], ["Formulario", "thecalastudio.com/contacto"], ["Dónde", "Málaga"], ["Respuesta", "En menos de 48 h laborables"]].map(([k, v]) => `<div style="display:flex;gap:30px;align-items:baseline;border-bottom:2px solid rgba(23,23,23,.25);padding:24px 0"><span class="l" style="width:230px;flex:none;font-size:24px">${k}</span><span style="font-size:40px;font-weight:500">${v}</span></div>`).join("")}
   </div>
   <p style="font-size:32px;line-height:1.35;margin-top:36px;color:rgba(23,23,23,.8)">Te respondemos, hablamos 30 minutos sin compromiso y, si tiene sentido, te enviamos una propuesta clara.</p>
   <div class="row l" style="position:absolute;left:0;right:0;bottom:0;border-top:2px solid rgba(23,23,23,.25);padding-top:22px"><span style="display:flex;gap:16px;align-items:center">${mark(34, C.ink, C.cream)} Cala Studio</span><span>36°44′N · 3°52′O</span></div>`) });
